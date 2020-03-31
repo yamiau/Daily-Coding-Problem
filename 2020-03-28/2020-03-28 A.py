@@ -20,10 +20,9 @@ leftmost = 0
 
 #Finding out the leftmost wall
 for i in range(len(array)):
-	if array[i+1] < array[i]:
+	if array[i] > array[i+1]:
 		leftmost = i
 		break
-	
 #Finding out total water-trapping gaps
 for i in array[1:]:
 	if (i >= array[leftmost]):
@@ -32,16 +31,21 @@ for i in array[1:]:
 gaps = [0 for i in range(totalGaps)]
 
 #Calculating units of potentially trapped water
-pivot = array[leftmost]
+pivot = leftmost
+currentGap = 0
 units = 0
 
-for i in array[leftmost:]:
-	if pivot > i:
-		units += (pivot - i)
+for i in array[pivot+1:]:
+	if array[pivot] > i:
+		units += (array[pivot] - i)
+		gaps[currentGap] += (array[pivot] - i)
+	elif pivot is array[-1]:
+		break
 	else:
-		pivot = i
+		pivot = array.index(i)
+		currentGap += 1
 
-print("The array ", array, "can hold ", units, " units of water")		
+print("The array ", array, "can hold ", units, " units of water in the form ", gaps)		
 		
 		
 		
