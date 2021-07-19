@@ -1,26 +1,38 @@
-#Classes
-class Tree:
-    def __init__(self, ID):
-        self.ID = ID
-        self.root = None
+from random import randint
 
-    def root(self, node):
-        if self.root == None and isinstance(node, Node):
-            self.root = node
-        else:
-            print("Could not add root to tree ", self.ID, "!")
+#Classes
+
 
 class Node:
-    def __init__(self, parent, ID):
-        self.parent = parent
+
+    def __init__(self, id):
+        self.id = id
         self.left = None
         self.right = None
-        self.ID = ID
 
-    def branch(self, node):
-        if self.left == None and isinstance(node, Node):
-            self.left = node
-        elif self.right == None and isinstance(node, Node):
-            self.right = node
-        else:
-            print("Could not add a branch to node ", node.ID, "!")
+
+def height(root):
+    if root is None:
+        return 0
+    return max(height(root.left), height(root.right)) + 1
+
+
+def isBalanced(root):
+    return abs(height(root.left) - height(root.right)) < 2
+
+
+#Calls
+
+
+root = Node(0)
+root.left = Node(1)
+root.right = Node(2)
+root.left.left = Node(3)
+root.left.right = Node(4)
+root.left.left.left = Node(5)
+root.left.left.right = Node(6)
+
+if isBalanced(root):
+    print("Tree #id", root.id, " is balanced!")
+else:
+    print("Tree #id", root.id, " is not balanced!")
