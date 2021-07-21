@@ -1,6 +1,9 @@
 from random import randint
 
 
+# Classes
+
+
 class LinkedList:
 
     def __init__(self):
@@ -25,7 +28,7 @@ class LinkedList:
     def as_string(self):
         current_node = self.head
         string = ""
-        while  current_node is not None:
+        while current_node is not None:
             string += str(current_node.value) + " -> "
             current_node = current_node.next
         return string
@@ -36,6 +39,9 @@ class Node:
     def __init__(self, value):
         self.value = value
         self.next = None
+
+
+# Functions
 
 
 def sort(list):
@@ -65,6 +71,7 @@ def alt_low_high(list):
         next = current.next
 
 
+# Calls
 
 
 my_list = LinkedList()
